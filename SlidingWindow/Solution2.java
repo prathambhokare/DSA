@@ -26,11 +26,32 @@ public class Solution2 {
 
     public static int longestKSubstr(String s, int k) {
         Map<Character,Integer> mp=new HashMap<>();//_stores frequecy of each character
-        
+        int i=0;
+        int j=0;
+        int ans=0;
+        while (j<s.length()) {
+            mp.put(s.charAt(j),mp.getOrDefault(s.charAt(j),0)+1);
+            while (mp.size()>k) {
+                if (mp.containsKey(s.charAt(i))) {
+                    mp.put(s.charAt(i),mp.getOrDefault(s.charAt(i),0)-1);
+                    if (mp.get(s.charAt(i))==0) {
+                        mp.remove(s.charAt(i));
+                    }
+                }
+                i=i+1;
+            }
+            if (mp.size()==k) {
+                ans=Math.max(ans,(j-i)+1);
+            }
+            j=j+1;
+        }
+        return ans==0?-1:ans;
     }
 
     public static void main(String[] args) {
         int ans = smallestSubWithSum(52, new int[]{1, 4, 45, 6, 0, 19});
+        System.out.println(ans);
+        ans = longestKSubstr("aabaaab", 2);
         System.out.println(ans);
     }
 }
