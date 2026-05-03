@@ -30,7 +30,8 @@ public class Solution7 {
     }
 
     public static void main(String[] args) {
-        int ans=maximumEarnings(new int[]{25,10,15,10,70}, new int[]{5,5,50,5,30});
+        int ans=maximumEarnings(new int[]{23,4,5,101}, new int[]{21,1,10,100});
+        // int ans=maximumEarnings(new int[]{25,10,15,10,70}, new int[]{5,5,50,5,30});
         //____ ATBTA
         //__ 25 + 0 + 50 + 0 + 70 => 120+25 => 145
         System.out.println(ans);
