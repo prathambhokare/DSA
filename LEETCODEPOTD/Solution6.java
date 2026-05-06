@@ -17,7 +17,7 @@ public class Solution6 {
                     emptyCell=j-1;
                 }
                 else if (box[i][j]=='#') {
-                    //__perform swamp between stone and empty cells
+                    //__perform swap between stone and empty cells
                     char currVal=box[i][j];
                     box[i][j]='.';
                     box[i][emptyCell]=currVal;
