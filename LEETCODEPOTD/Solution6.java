@@ -5,28 +5,30 @@ import java.util.*;
 public class Solution6 {
 
     public static char[][] rotateTheBox(char[][] box) {
-        int n = box.length;
-        int m = box[0].length;
+        char[][] ans=new char[box[0].length][box.length];
 
-        for (int i = 0; i < n; i++) {
-            int empty = m - 1; //__position to place '#'
+        int n=box.length;
+        int m=box[0].length;
 
-            for (int j = m - 1; j >= 0; j--) {
-                if (box[i][j] == '*') {
-                    empty = j - 1; //__reset after obstacle
-                } else if (box[i][j] == '#') {
-                    char temp = box[i][empty];
-                    box[i][empty] = '#';
-                    box[i][j] = temp;
-                    empty--;
+        for (int i=0;i<n;i++) {
+            int emptyCell=m-1;
+            for (int j=m-1;j>=0;j--) {
+                if (box[i][j]=='*') {
+                    emptyCell=j-1;
+                }
+                else if (box[i][j]=='#') {
+                    //__perform swamp between stone and empty cells
+                    char currVal=box[i][j];
+                    box[i][j]='.';
+                    box[i][emptyCell]=currVal;
+                    emptyCell=emptyCell-1;
                 }
             }
         }
 
-        char[][] ans = new char[m][n];
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                ans[j][n - 1 - i] = box[i][j];
+        for (int i=0;i<n;i++) {
+            for (int j=0;j<m;j++) {
+                ans[j][n-i-1]=box[i][j];
             }
         }
 
