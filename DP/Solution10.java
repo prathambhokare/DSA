@@ -104,8 +104,53 @@ public class Solution10 {
         return dp[arr.length-1][K];
     }
 
+    public static boolean isPowerOfFive(String ansval) {
+
+        if (ansval == null || ansval.length() == 0) {
+            return false;
+        }
+        // convert binary string to decimal
+        long num = Long.parseLong(ansval, 2);
+        // powers of 5 are always positive
+        if (num <= 0) {
+            return false;
+        }
+        // keep dividing by 5
+        while (num % 5 == 0) {
+            num /= 5;
+        }
+        return num == 1;
+    }
+
+    public static int minimumBeautifulSubstrings(String s) {
+        int ans=0;
+        //__minimum beautiful substrings till index i
+        int[] dp=new int[s.length()];
+        Arrays.fill(dp, Integer.MAX_VALUE);
+        for (int i=0;i<s.length();i++) {
+            for (int j=i;j>=0;j--) {
+                if (s.charAt(j) == '0') {
+                    continue;
+                }
+                String ansval = s.substring(j, i + 1);
+                if (isPowerOfFive(ansval)) {
+                    if (j==0) {
+                        dp[i]=1;
+                    }
+                    else if (dp[j-1]!=Integer.MAX_VALUE) {
+                        dp[i]=Math.min(dp[i],1+dp[j-1]);
+                    }
+                }
+            }
+        }
+        ans=dp[dp.length-1]==Integer.MAX_VALUE ? -1 : dp[dp.length-1];
+        return ans;
+    }
+
     public static void main(String[] args) {
-        int ans=numberOfWays(new int[]{1,3,2,1}, 4,4);
+        // int ans=numberOfWays(new int[]{1,3,2,1}, 4,4);
+        // System.out.println(ans);
+        int ans=minimumBeautifulSubstrings("1011");
         System.out.println(ans);
     }
 }
