@@ -147,10 +147,79 @@ public class Solution10 {
         return ans;
     }
 
+    public static int minimumSumOfMaximumElementOfPartitions(int[] arr,int K) {
+        int ans=Integer.MAX_VALUE;
+        //__minimum possible answer for first (0...i) elements using exactly k partitions
+        int[][] dp=new int[arr.length][K+1];
+        for (int i=0;i<dp.length;i++) {
+            Arrays.fill(dp[i], Integer.MAX_VALUE);
+        }
+        for (int i=0;i<arr.length;i++) {
+            int maxElement=0;
+            for (int j=i;j>=0;j--) {
+                maxElement=Math.max(maxElement, arr[j]);
+                if (j==0) {
+                    dp[i][1]=maxElement;
+                }
+                else {
+                    for (int k=2;k<=K;k++) {
+                        if (dp[j-1][k-1]!=Integer.MAX_VALUE) {
+                            dp[i][k]=Math.min(
+                                dp[i][k],
+                                maxElement + dp[j-1][k-1]
+                            );
+                        }
+                    }
+                }
+            }
+        }
+        ans=dp[arr.length-1][K];
+        return ans;
+    }
+
+    public static boolean isBalancedSubstring(int[] freq) {
+        int expected = 0;
+        for (int count : freq) {
+            if (count == 0) {
+                continue;
+            }
+            if (expected == 0) {
+                expected = count;
+            }
+            else if (expected != count) {
+                return false;
+            }
+        }
+        return true;
+    }
+    public static int minimumSubstringsInPartition(String s) {
+       int[] dp=new int[s.length()];
+        Arrays.fill(dp, Integer.MAX_VALUE);
+        for (int i=0;i<s.length();i++) {
+            int[] freq = new int[26];
+            for (int j=i;j>=0;j--) {
+                freq[s.charAt(j) - 'a']++;
+                if (isBalancedSubstring(freq)) {
+                    if (j==0) {
+                        dp[i]=1;
+                    }
+                    else if (dp[j-1]!=Integer.MAX_VALUE) {
+                        dp[i]=Math.min(dp[i],1+dp[j-1]);
+                    }
+                }
+            }
+        }
+        return dp[s.length()-1];
+    }
+
     public static void main(String[] args) {
         // int ans=numberOfWays(new int[]{1,3,2,1}, 4,4);
         // System.out.println(ans);
-        int ans=minimumBeautifulSubstrings("1011");
+        // int ans=minimumBeautifulSubstrings("1011");
+        // System.out.println(ans);
+        // int ans=minimumSumOfMaximumElementOfPartitions(new int[]{3, 1, 2, 4}, 2);
+        // System.out.println(ans);
+        int ans=minimumSubstringsInPartition("fabccddg");
         System.out.println(ans);
     }
 }
