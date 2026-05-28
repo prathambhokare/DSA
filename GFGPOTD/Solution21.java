@@ -31,7 +31,7 @@ public class Solution21 {
     }
 
     public static void main(String[] args) {
-        int ans=validGroups("12");
+        int ans=validGroups("1119");
         System.out.println(ans);
     }
 }
