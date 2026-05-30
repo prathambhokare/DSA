@@ -1,10 +1,10 @@
 package SegmentTree;
 
-public class MaxSumQuery {
+public class MaxRangeQuery {
 
     static int[] segmentTree;
 
-    public MaxSumQuery() {
+    public MaxRangeQuery() {
         // constructor
     }
 
