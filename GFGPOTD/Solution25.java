@@ -23,7 +23,7 @@ public class Solution25 {
     }
 
     public static void main(String[] args) {
-        int ans=sumDiffPairs(new int[]{5,15,10,300},12);
+        int ans=sumDiffPairs(new int[]{3,5,10,15,17,12,9},4);
         System.out.println(ans);
     }
 }
