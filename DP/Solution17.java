@@ -135,6 +135,32 @@ public class Solution17 {
         return dp[0][s.length() - 1];
     }
 
+    public static int matrixMultiplication(int arr[]) {
+        int n = arr.length;
+        // dp[i][j] = min cost to multiply matrices i..j
+        int[][] dp = new int[n][n];
+        // length = 1 (single matrix → cost 0)
+        for (int i = 1; i < n - 1; i++) {
+            dp[i][i] = 0;
+        }
+        // len = 2..n-1
+        for (int len = 2; len < n; len++) {
+            for (int i = 1; i + len - 1 < n; i++) {
+                int j = i + len - 1;
+                dp[i][j] = Integer.MAX_VALUE;
+                for (int k = i; k < j; k++) {
+                    int cost =
+                        dp[i][k] +
+                        dp[k + 1][j] +
+                        (arr[i - 1] * arr[k] * arr[j]);
+
+                    dp[i][j] = Math.min(dp[i][j], cost);
+                }
+            }
+        }
+        return dp[1][n - 1];
+    }
+
     public static void main(String[] args) {
         int ans = maxCoins(new int[] { 3, 1, 5, 8 });
         System.out.println(ans);
@@ -182,5 +208,20 @@ public class Solution17 {
         System.out.println(
                 Arrays.toString(
                         maximumSubarrayXor(nums2, queries2))); // [7, 14, 11, 14, 5]
+
+        int[] test1 = {10, 20};
+        System.out.println(matrixMultiplication(test1)); // 0
+
+        int[] test2 = {10, 20, 30};
+        System.out.println(matrixMultiplication(test2)); // 6000
+
+        int[] test3 = {10, 30, 5, 60};
+        System.out.println(matrixMultiplication(test3)); // 4500
+
+        int[] test4 = {40, 20, 30, 10, 30};
+        System.out.println(matrixMultiplication(test4)); // 26000
+
+        int[] test5 = {5, 10, 20, 40};
+        System.out.println(matrixMultiplication(test5)); // 30000
     }
 }
