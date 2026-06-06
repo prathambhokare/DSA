@@ -24,3 +24,4 @@ public class Solution {
         }
         return stack.length() == 0 ? "-1" : stack.toString();
     }
+}
