@@ -81,3 +81,17 @@ class Solution34 {
         System.out.println(sol.maxProduct(10)); // 36
     }
 }
+
+last 3 years at DB i have worked
+1. informatica workflow migration to spring based application in which i have led 10+ workflows end to end
+   analysis and development which has save 400k euro and reducing sme dependancies
+2. led complete analysis and development of ingestion of budget data into reporting which has replaces manual process saves data loading time from 2 days to 3 minutes
+3. Automation of adjustment data load, which replace excel based manual data upload tool whih saves business user time required for data prepration reduces manual error reduces adjustment processing time to 
+   result in faster reflect of pnl numbers in a reports
+4. Design and develop resuable configs based workflow definition which has save reduces development and made testing easier
+5. Built a Splunk dashboard with time-based log search for historical retrieval, empowering the SL2 team to self-serve monitoring,
+   reducing manual effort, eliminating engineering dependency for log analysis, and accelerating incident detection and resolution.
+6. Develop and Designed prevention outlier adjustment loading into system using outlier detection algorithm,which helps preventing wrong P&L 
+   values reflect in reporting
+7. Build Tableua Automation Utility to publish workbook to production which replacement of manual process reduces time to less than 1 minutes to publish workbook
+8. Implemented alerts and monitoring for all services which detection of service failure and automated incident created which directly monitor by SL2 team
