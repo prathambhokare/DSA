@@ -1,5 +1,7 @@
 package JulyPractice.BinarySearch;
 
+import java.util.Arrays;
+
 public class BinarySearchOnAnswer {
 	public static int sqrt(int num) {
 		int ans=0;
@@ -196,6 +198,38 @@ public class BinarySearchOnAnswer {
             return arr[arr.length-1]+(k-(arr[arr.length-1]-arr.length));
         }
         return low+k;
+    }
+    public boolean isPossible(int dist,int[] stalls,int k) {
+        int ans=1;
+        int laststall=stalls[0];
+        for (int i=1;i<stalls.length;i++) {
+            if ((stalls[i]-laststall)>=dist) {
+                laststall=stalls[i];
+                ans=ans+1;
+            }
+            if (ans>=k) { 
+                return true;
+            }
+        }
+        return false;
+     }
+    public int aggressiveCows(int[] stalls, int k) {
+        // code here
+        int ans=0;
+        Arrays.sort(stalls);
+        int low=1;
+        int high=stalls[stalls.length-1]-stalls[0];
+        while (low<=high) {
+            int mid=low+(high-low)/2;
+            if (isPossible(mid,stalls,k)) {
+                ans=mid;
+                low=mid+1;
+            }
+            else {
+                high=mid-1;
+            }
+        }
+        return ans;
     }
 	public static void main(String[] args) {
 		// write your code here
