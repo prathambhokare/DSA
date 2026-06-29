@@ -12,9 +12,9 @@ public class BinarySearch {
     //3. Search in rotated sorted array I - Done
     //4. Search in rotated sorted array II - Done
     //5. Minimum in rotated sorted array - Done
-    //6. How many times array is sorted - (Size - Min.Element Position In Array)
-    //7. Single element in an array
-    //8. Find peak element in an array
+    //6. How many times array is sorted - (Size - Min.Element Position In Array) - Done
+    //7. Single element in an array - Done
+    //8. Find peak element in an array - Done
 
     public int search(int[] arr,int target) {
         int low=0;
